@@ -27,7 +27,7 @@ def test_stations_within_radius():
 
 def test_rivers_with_station():
     assert "River Cam" in rivers_with_station(stations)
-    assert type(rivers_with_station) == "set"
+    assert type(rivers_with_station(stations)) == "set"
 
 def test_stations_by_river():
-    assert "Cambridge Jesus Lock" in stations_by_river(stations)["River Cam"]
+    assert "Cambridge Jesus Lock" in stations_by_river(stations)["River Cam"] == True
