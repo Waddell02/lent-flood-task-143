@@ -22,5 +22,5 @@ def test_stations_within_radius():
     # Test that a list is built
     assert len(test_radius_list) > 0
     # Test that all stations are within the range
-    for n in range(len(stations)):
+    for n in range(len(test_radius_list)):
         assert haversine(centre, test_radius_list[n].coord) < 10
