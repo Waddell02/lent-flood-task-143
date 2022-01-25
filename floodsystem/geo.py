@@ -60,5 +60,5 @@ def stations_by_river(stations):
             if station.river == river:
                 associated_stations.append(station.name)
         # Add to dictionary
-        station_river_dict[river] = [associated_stations]
+        station_river_dict[river] = associated_stations
     return station_river_dict
