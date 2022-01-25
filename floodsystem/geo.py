@@ -19,7 +19,7 @@ def stations_by_distance(stations, p):
     distance_list = []
     # Add a tuple for every station in stations list using haversine formula
     for station in stations:
-        distance_list += (station, haversine(p, station.coord))
+        distance = haversine(station.coord, p)
+        distance_list.append((station, distance))
     # Sort list using existing function
     return sorted_by_key(distance_list, 1)
-    
