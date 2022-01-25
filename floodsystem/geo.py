@@ -24,6 +24,7 @@ def stations_by_distance(stations, p):
     # Sort list using existing function
     return sorted_by_key(distance_list, 1)
 
+
 def stations_within_radius(stations, centre, r):
     """Returns a list of all stations within radius r of a geographic coordinate x"""
     # Build empty list
@@ -35,3 +36,29 @@ def stations_within_radius(stations, centre, r):
             radius_list.append(station)
     # No sort required yet
     return radius_list
+
+
+def rivers_with_station(stations):
+    """Returns a set with the names of the rivers with monitoring stations"""
+    # Build empty set
+    rivers = set()
+    # Add the river of every station, and duplicates are removed automatically
+    for station in stations:
+        rivers.add(station.river)
+    return rivers
+
+def stations_by_river(stations):
+    """Returns a dictionary that maps river names to a list of their respective stations"""
+    # Build empty dictionary
+    station_river_dict = {}
+    # Build river list
+    rivers = rivers_with_station(stations)
+    # For every river in river list create a list of associated stations
+    for river in rivers:
+        associated_stations = []
+        for station in stations:
+            if station.river == river:
+                associated_stations.append(station.name)
+        # Add to dictionary
+        station_river_dict[river] = [associated_stations]
+    return station_river_dict
