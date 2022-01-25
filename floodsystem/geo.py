@@ -28,8 +28,10 @@ def stations_within_radius(stations, centre, r):
     """Returns a list of all stations within radius r of a geographic coordinate x"""
     # Build empty list
     radius_list = []
+    # Check if each station is within r of centre
     for station in stations:
         distance = haversine(station.coord, centre)
         if distance < r:
             radius_list.append(station)
+    # No sort required yet
     return radius_list
