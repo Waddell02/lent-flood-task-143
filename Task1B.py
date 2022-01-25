@@ -12,9 +12,9 @@ def run():
     full_distance_list = stations_by_distance(stations, p)
     modified_list = []
     for station, distance in full_distance_list:
-        modified_list += (station.name, station.town, distance)
-    print("The 10 closest stations are: " + modified_list[:10])
-    print("The 10 furthest stations are: " + modified_list[-10:])
+        modified_list.append((station.name, station.town, distance))
+    print("The 10 closest stations are: " + str(modified_list[:10]))
+    print("The 10 furthest stations are: " + str(modified_list[-10:]))
 
 
 if __name__ == "__main__":
