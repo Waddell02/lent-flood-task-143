@@ -26,8 +26,10 @@ def test_stations_within_radius():
         assert haversine(centre, test_radius_list[n].coord) < 10
 
 def test_rivers_with_station():
+    """1D Unit Test"""
     assert "River Cam" in rivers_with_station(stations)
-    assert type(rivers_with_station(stations)) == "set"
+    assert type(rivers_with_station(stations)) == set
 
 def test_stations_by_river():
-    assert "Cambridge Jesus Lock" in stations_by_river(stations)["River Cam"] == True
+    """1D Unit Test"""
+    assert "Cambridge Jesus Lock" in stations_by_river(stations)["River Cam"]
