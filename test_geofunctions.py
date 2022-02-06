@@ -1,5 +1,6 @@
-from floodsystem.geo import rivers_with_station, stations_by_distance, stations_within_radius, stations_by_river
+from floodsystem.geo import rivers_with_station, stations_by_distance, stations_within_radius, stations_by_river, rivers_by_station_number
 from floodsystem.stationdata import build_station_list
+from floodsystem.station import MonitoringStation
 from haversine import haversine, Unit
 
 # Build station list
@@ -33,3 +34,20 @@ def test_rivers_with_station():
 def test_stations_by_river():
     """1D Unit Test"""
     assert "Cambridge Jesus Lock" in stations_by_river(stations)["River Cam"]
+
+def test_rivers_by_station_number():
+    """1E test"""
+    # Create test data
+    stations = []
+    stations.append(MonitoringStation("test-s-id-1", "test-m-id-1", "1", (0,1), (1,2), "river-1", ""))
+    stations.append(MonitoringStation("test-s-id-2", "test-m-id-2", "2", (0,2), (1,2), "river-2", ""))
+    stations.append(MonitoringStation("test-s-id-3", "test-m-id-3", "3", (0,1.5), (1,2), "river-2", ""))
+    stations.append(MonitoringStation("test-s-id-4", "test-m-id-4", "4", (0,-1.75), (1,2), "river-3", ""))
+
+    rivers_stations_number = rivers_by_station_number(stations, 1)
+    # Test for rivers with the same number of stations will be returned
+    assert rivers_stations_number[0][1] == 2
+
+    # General testing
+    rivers_stations_number = rivers_by_station_number(stations, 2)
+    assert len(rivers_stations_number) == 3

@@ -62,3 +62,24 @@ def stations_by_river(stations):
         # Add to dictionary
         station_river_dict[river] = associated_stations
     return station_river_dict
+
+def rivers_by_station_number(stations, N):
+    """Returns a list of (river name, number of stations) tuples, sorted by the number of stations"""
+    # Get stations by river dictionary
+    station_river_dict = stations_by_river(stations)
+    # Create list of tuples wirth river and number of stations associated
+    rivers_stations_number = [(river,len(stations)) for river, stations in station_river_dict.items()]
+    # Sort list by number of stations
+    sorted_list = sorted_by_key(rivers_stations_number, 1, True)
+
+    # Check N isn't higher that list length
+    if N+1 > len(sorted_list):
+        return sorted_list
+
+    # Get number of stations for Nth river
+    number = sorted_list[N-1][1]
+
+    for i in range(N, len(sorted_list)):
+        if sorted_list[i][1] < number:
+            return sorted_list[:i]
+    return sorted_list
