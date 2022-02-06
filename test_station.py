@@ -25,3 +25,11 @@ def test_create_monitoring_station():
     assert s.typical_range == trange
     assert s.river == river
     assert s.town == town
+
+def test_inconsistent_typical_range_stations():
+    # Test typical_range = None
+    assert not MonitoringStation("test-s-id-1", "test-m-id-1", "1", (0,1), None, "", "").typical_range_consistent()
+    # Test typical_range = invalid
+    assert not MonitoringStation("test-s-id-2", "test-m-id-2", "2", (0,2), (5,2), "", "").typical_range_consistent()
+    # Test typical_range = valid
+    assert not MonitoringStation("test-s-id-3", "test-m-id-3", "3", (0,1.5), (1,2), "", "").typical_range_consistent()
