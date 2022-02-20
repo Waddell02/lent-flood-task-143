@@ -44,4 +44,4 @@ def test_relative_water_levels():
     assert Hypothetical.relative_water_level() == 0
 
     Hypothetical.latest_level = 2.5
-    assert Hypothetical.relative_water_level() = 0.5
+    assert Hypothetical.relative_water_level() == 0.5
