@@ -33,3 +33,12 @@ def test_inconsistent_typical_range_stations():
     assert not MonitoringStation("test-s-id-2", "test-m-id-2", "2", (0,2), (5,2), "", "").typical_range_consistent()
     # Test typical_range = valid
     assert MonitoringStation("test-s-id-3", "test-m-id-3", "3", (0,1.5), (1,2), "", "").typical_range_consistent()
+
+def test_relative_water_levels():
+    Hypothetical = MonitoringStation("", "", "test", "", (0,0), (0, 5), "", "")
+
+    Hypothetical.latest_level = 5
+    assert Hypothetical.relative_water_level() == 1
+
+    Hypothetical.latest_level = 0
+    assert Hypothetical.relative_water_level() == 0
