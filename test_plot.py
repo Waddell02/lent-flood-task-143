@@ -13,15 +13,3 @@ def test_plot_water_levels():
         dt = 10
         dates, levels = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
         plot_water_levels(station, dates, levels)
-
-@given(integers(min_value=1, max_value=20))
-def test_plot_water_level_with_fit(p):
-    stations = build_station_list()
-    update_water_levels(stations)
-
-    # Choose a few random stations and test
-    for N in [2, 13, 234, 444]:
-        station = stations[N]
-        dt = 10
-        dates, levels = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
-        plot_water_level_with_fit(station, dates, levels, p)
