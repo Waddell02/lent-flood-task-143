@@ -9,7 +9,7 @@ def test_plot_water_levels():
 
     # Choose a few random stations and test
     for N in [7, 29, 50, 435]:
-        station = station[N]
+        station = stations[N]
         dt = 10
         dates, levels = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
         plot_water_levels(station, dates, levels)
