@@ -1,10 +1,10 @@
 from floodsystem.stationdata import build_station_list, update_water_levels
 from floodsystem.datafetcher import fetch_measure_levels
-from floodsystem.plot import plot_water_levels
+from floodsystem.plot import plot_water_level_with_fit
+from floodsystem.analysis import polyfit
 from floodsystem.flood import stations_highest_rel_level
 import datetime
 import matplotlib.pyplot as plt
-
 
 def run():
     # Build station list
@@ -40,12 +40,11 @@ def run():
                 iterate(N+1, dt, iteration)
                 break
             else:
-                 plot_water_levels(station.name, dates, levels)
+                 plot_water_level_with_fit(station.name, dates, levels, 4)
                  plt.show()
     # Starting parameters for Task
-    iterate(5, 10, 0)
+    iterate(5, 2, 0)
 
 if __name__ == "__main__":
-    print("*** Task 2E: CUED Part IA Flood Warning System ***")
+    print("*** Task 2F: CUED Part IA Flood Warning System ***")
     run()
-
