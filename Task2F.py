@@ -40,7 +40,7 @@ def run():
                 iterate(N+1, dt, iteration)
                 break
             else:
-                 plot_water_level_with_fit(station.name, dates, levels, 4)
+                 plot_water_level_with_fit(station, dates, levels, 4)
                  plt.show()
     # Starting parameters for Task
     iterate(5, 2, 0)

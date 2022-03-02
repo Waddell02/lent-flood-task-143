@@ -8,10 +8,13 @@ from floodsystem.analysis import polyfit
 
 def plot_water_levels(station, dates, levels):
     plt.plot(dates, levels)
+    # Add lines of typical high and low
+    plt.plot([dates[-1], dates[0]], [station.typical_range[0], station.typical_range[0]], color='g', label="$typical low$")
+    plt.plot([dates[-1], dates[0]], [station.typical_range[1], station.typical_range[1]], color='r', label="$typical high$")
     plt.xlabel('date')
     plt.ylabel('water level (m)')
     plt.xticks(rotation=45);
-    plt.title(station)
+    plt.title(station.name)
     plt.tight_layout()
 
 def plot_water_level_with_fit(station, dates, levels, p):
@@ -30,11 +33,13 @@ def plot_water_level_with_fit(station, dates, levels, p):
     x1 = np.linspace(ds[0], ds[-1], 30)
     # Plot polynomial
     plt.plot(x1, poly(x1 - d0))
-
+    # Add lines of typical high and low
+    plt.plot([dates[-1], dates[0]], [station.typical_range[0], station.typical_range[0]], color='g', label="$typical low$")
+    plt.plot([dates[-1], dates[0]], [station.typical_range[1], station.typical_range[1]], color='r', label="$typical high$")
     plt.xlabel('date')
     plt.ylabel('water level (m)')
     plt.xticks(rotation=45)
-    plt.title(station)
+    plt.title(station.name)
 
     plt.tight_layout()
 

@@ -40,7 +40,7 @@ def run():
                 iterate(N+1, dt, iteration)
                 break
             else:
-                 plot_water_levels(station.name, dates, levels)
+                 plot_water_levels(station, dates, levels)
                  plt.show()
     # Starting parameters for Task
     iterate(5, 10, 0)
