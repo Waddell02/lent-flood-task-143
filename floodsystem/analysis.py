@@ -1,3 +1,4 @@
+from types import NoneType
 import matplotlib.pyplot as plt
 import matplotlib
 import matplotlib.dates
@@ -5,11 +6,6 @@ import numpy as np
 from datetime import datetime, timedelta
 from floodsystem.datafetcher import fetch_measure_levels
 from floodsystem.stationdata import build_station_list, update_water_levels
-from floodsystem.flood import stations_highest_rel_level
-from . station import MonitoringStation
-
-stations = build_station_list()
-update_water_levels(stations)
 
 def polyfit(dates, levels, p):
     ds = matplotlib.dates.date2num(dates)
@@ -25,6 +21,8 @@ def polyfit(dates, levels, p):
 
 def warning(stations):
     for station in stations:
+        if type(station.relative_water_level()) != float:
+            break
         if station.relative_water_level() >= 10 or station.relative_water_level() <= -10:
             continue
         elif station.relative_water_level() >= 3.0:
