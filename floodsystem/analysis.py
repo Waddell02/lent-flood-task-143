@@ -16,3 +16,18 @@ def polyfit(dates, levels, p):
     poly = np.poly1d(p_coeff)
 
     return(poly, d0)
+
+def warning(stations):
+    for station in stations:
+        if station.relative_water_level() >= 10 or station.relative_water_level() <= -10:
+            continue
+        elif station.relative_water_level() >= 3.0:
+            station.warning_level = 4
+        elif station.relative_water_level() >= 2.5:
+            station.warning_level = 3
+        elif station.relative_water_level() >= 2.0:
+            station.warning_level = 2
+        elif station.relative_water_level() >= 1.5:
+            station.warning_level = 1
+        else:
+            station.warning_level = 0
