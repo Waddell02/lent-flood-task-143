@@ -21,7 +21,7 @@ def polyfit(dates, levels, p):
 
 def warning(stations):
     for station in stations:
-        if type(station.relative_water_level()) != float:
+        if station.relative_water_level() == None:
             break
         if station.relative_water_level() >= 10 or station.relative_water_level() <= -10:
             continue
